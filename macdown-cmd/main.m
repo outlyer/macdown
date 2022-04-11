@@ -107,14 +107,14 @@ int main(int argc, const char * argv[])
         for (NSString *arg in argproc.arguments)
         {
             NSString *escaped =
-                [arg stringByAddingPercentEscapesUsingEncoding:kMPPathEncoding];
+                [arg stringByAddingPercentEncodingWithAllowedCharacters:kMPPathEncoding];
             NSURL *url = [NSURL URLWithString:escaped relativeToURL:pwdUrl];
             [urls addObject:url];
         }
         MPCollectForMacDown(urls);
 
         // Launch MacDown.
-        [[NSWorkspace sharedWorkspace] launchAppWithBundleIdentifier:kMPApplicationBundleIdentifier options:NSWorkspaceLaunchDefault additionalEventParamDescriptor:nil launchIdentifier:nil];
+        [[NSWorkspace sharedWorkspace] launchAppWithBundleIdentifier:kMPApplicationBundleIdentifier options:NSWorkspaceOpenConfiguration additionalEventParamDescriptor:nil launchIdentifier:nil];
     }
     return EXIT_SUCCESS;
 }
